@@ -1,0 +1,10 @@
+{
+  "parameters": {
+    "test.name": "John"
+  },
+  "services": {
+    "test.class": {"type": "class", "file": "test"},
+    "test": {"type": "instance", "id": "test.class", "arguments": "$test.name"},
+    "test.factory": {"type": "factory", "file": "test_factory", "arguments": ["$test.name"]}
+  }
+}

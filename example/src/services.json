@@ -1,0 +1,6 @@
+{
+  "services": {
+    "repository": {"type": "instance", "file": "repository"},
+    "controller": {"type": "instance", "file": "controller", "arguments": ["@repository"]}
+  }
+}

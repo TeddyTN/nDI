@@ -1,0 +1,35 @@
+{
+  "name": "ndi",
+  "version": "0.0.1",
+  "description": "nDI is a simple Dependency Injection framework",
+  "main": "index.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TeddyTN/nDI.git"
+  },
+  "keywords": [
+    "di",
+    "dependency",
+    "injection",
+    "injector"
+  ],
+  "author": "TeddyTN",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TeddyTN/nDI/issues"
+  },
+  "homepage": "https://github.com/TeddyTN/nDI",
+  "dependencies": {
+    "lodash": "^2.4.1"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-mocha-test": "^0.12.0",
+    "jscoverage": "^0.5.6",
+    "mocha": "^1.21.4"
+  }
+}

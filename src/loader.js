@@ -6,9 +6,10 @@ var _ = require('lodash'),
     path = require('path'),
     ServiceWrapper = require('./service_wrapper');
 
-function Loader(container, basePath) {
+function Loader(container, configBasePath, fileBasePath) {
   this._container = container;
-  this._path = path.resolve(basePath);
+  this._configPath = path.resolve(configBasePath);
+  this._path = _.isEmpty(fileBasePath) ? this._configPath : path.resolve(fileBasePath);
 }
 
 module.exports = Loader;
@@ -62,7 +63,7 @@ _.assign(Loader.prototype, {
     });
   },
   load: function(file) {
-    var filePath = path.join(this._path, file),
+    var filePath = path.join(this._configPath, file),
         message = format('Can not load file "%s", ', filePath);
 
     if (!fs.existsSync(filePath)) {

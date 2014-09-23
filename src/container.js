@@ -6,6 +6,7 @@ var _ = require('lodash'),
 function Container() {
     this._parameters = {};
     this._services = {};
+    this._taggedServices = {};
 }
 
 module.exports = Container;
@@ -23,8 +24,34 @@ _.assign(Container.prototype, {
     has: function(id) {
         return this._services.hasOwnProperty(id);
     },
-    set: function(id, value) {
-      this._services[id] = value;  
+    set: function(id, value, tags) {
+      this._services[id] = value;
+
+      if (_.isEmpty(tags)) {
+          tags = [];
+      } else if (!_.isArray(tags)) {
+          tags = [tags];
+      }
+
+      var me = this;
+      _.forEach(tags, function(tag) {
+          if (!_.isString(tag)) {
+              throw new TypeError('Server tags must be an string');
+          }
+
+          if (!_.has(me._taggedServices, tag)) {
+              me._taggedServices[tag] = [];
+          }
+
+          me._taggedServices[tag].push(id);
+      });
+    },
+    findTaggedServiceIds: function(name) {
+        if (!_.has(this._taggedServices, name)) {
+            return [];
+        }
+
+        return _.toArray(this._taggedServices[name]);
     },
 
     getParameter: function(name) {

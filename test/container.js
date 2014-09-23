@@ -55,6 +55,46 @@ describe('Container', function() {
     });
   });
 
+  describe('#set', function() {
+    it('should be throw an error on invalid tag config', function() {
+      var container = new nDI.Container(),
+          service = function() { return 'Hello World!'; };
+
+      assert.throws(
+        function() {
+          container.set(serviceId, service, {a: 1});
+        },
+        TypeError
+      )
+    });
+  });
+
+  describe('#findTaggedServiceIds', function() {
+    it('should return an empty array wehn no tagged services found', function() {
+      var container = new nDI.Container(),
+          tag = 'tag.example';
+
+      var ids = container.findTaggedServiceIds(tag);
+
+      assert.ok(Array.isArray(ids));
+      assert.equal(ids.length, 0);
+    });
+
+    it('should return an array with service ids for tagged services', function() {
+      var container = new nDI.Container(),
+          service = function() { return 'Hello World!'; },
+          tag = 'test.tag';
+
+      container.set(serviceId, service, [tag]);
+
+      var ids = container.findTaggedServiceIds(tag);
+
+      assert.ok(Array.isArray(ids));
+      assert.equal(ids.length, 1);
+      assert.strictEqual(ids[0], serviceId);
+    });
+  });
+
   describe('#getParameter', function() {
     it('should throw error when parameter is not defined', function() {
        var container = new nDI.Container();

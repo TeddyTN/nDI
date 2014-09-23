@@ -40,11 +40,11 @@ _.assign(Loader.prototype, {
     }
 
     if ('class' === config.type) {
-      this._container.set(id, config.module);
+      this._container.set(id, config.module, config.tags);
     } else if ('instance' === config.type) {
-      this._container.set(id, new ServiceWrapper(this._container, config.module, config['arguments']));
+      this._container.set(id, new ServiceWrapper(this._container, config.module, config['arguments']), config.tags);
     } else if ('factory' === config.type) {
-      this._container.set(id, new FactoryWrapper(this._container, config.module, config['arguments']));
+      this._container.set(id, new FactoryWrapper(this._container, config.module, config['arguments']), config.tags);
     }
   },
   _parseServices: function(config) {

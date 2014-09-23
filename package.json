@@ -1,6 +1,6 @@
 {
   "name": "ndi",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "nDI is a simple Dependency Injection framework",
   "main": "index.js",
   "scripts": {

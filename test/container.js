@@ -65,7 +65,7 @@ describe('Container', function() {
           container.set(serviceId, service, {a: 1});
         },
         TypeError
-      )
+      );
     });
   });
 
